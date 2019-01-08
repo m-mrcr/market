@@ -55,8 +55,8 @@ class Market
       return false
     end
     if total_inventory[item] >= quantity
-      @vendors.map do |vendor|
-        if vendor.inventory.has_key?(item) && vendor.inventory[item] >= 0
+      @vendors.each do |vendor|
+        if vendor.inventory.has_key?(item)
             vendor.inventory[item] -= quantity
         end
       end
