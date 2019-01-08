@@ -50,4 +50,18 @@ class Market
     return inventory
   end
 
+  def sell(item, quantity)
+    if total_inventory[item] <= quantity
+      return false
+    end
+    if total_inventory[item] >= quantity
+      @vendors.map do |vendor|
+        if vendor.inventory.has_key?(item) && vendor.inventory[item] >= 0
+            vendor.inventory[item] -= quantity
+        end
+      end
+      return true
+    end
+  end
+
 end
